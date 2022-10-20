@@ -12,12 +12,6 @@
     "comment": ""
   },
   "attributes": {
-    "entityId": {
-      "type": "integer"
-    },
-    "parentId": {
-      "type": "integer"
-    },
     "name": {
       "type": "string"
     },
@@ -55,6 +49,11 @@
     "path": {
       "type": "string",
       "unique": true
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::bigcommerce.category"
     }
   }
 }

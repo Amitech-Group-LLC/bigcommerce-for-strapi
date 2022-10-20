@@ -1,8 +1,8 @@
 import { Strapi } from '@strapi/strapi';
 import { StoreSettings } from '../types/storeSettings'
-import { config, timeZones, brands } from 'api-sdk'
+import { config, timeZones, brands, categories } from 'api-sdk'
 import { getAllItems, handleList } from '../utils/list-data'
-import { toStrapiBrand } from '../utils/data-mapping'
+import { toStrapiBrand, toStrapiCategory } from '../utils/data-mapping'
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async setupClient() {
@@ -34,6 +34,39 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       } catch {
         await strapi.entityService.update('plugin::bigcommerce.brand', data.id, {
           data,
+        })
+      }
+    })
+
+    return {
+      total: result.length,
+    }
+  },
+  async createAllCategories() {
+    const result = await getAllItems((page) => categories.list({ limit: 250, page }))
+
+    await handleList(result, async (category) => {
+      // we should exclude relation because some categories can be not created yet
+      const { parent: _, ...data } = toStrapiCategory(category)
+
+      try {
+        await strapi.entityService.create('plugin::bigcommerce.category', {
+          data,
+        })
+      } catch {
+        await strapi.entityService.update('plugin::bigcommerce.category', data.id, {
+          data,
+        })
+      }
+    })
+
+    // add relations
+    await handleList(result, async (category) => {
+      const { parent, ...data } = toStrapiCategory(category)
+
+      if (parent) {
+        await strapi.entityService.update('plugin::bigcommerce.category', data.id, {
+          data: { parent },
         })
       }
     })

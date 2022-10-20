@@ -9,14 +9,19 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   },
   async createAllEntities(ctx) {
     try {
-      const [brands] = await Promise.all([
+      const [brands, categories] = await Promise.all([
         await strapi
           .plugin('bigcommerce')
           .service('commerce')
-          .createAllBrands()
+          .createAllBrands(),
+        await strapi
+          .plugin('bigcommerce')
+          .service('commerce')
+          .createAllCategories()
       ])
       ctx.body = {
         brandsTotal: brands.total,
+        categoriesTotal: categories.total,
       }
     } catch (e) {
       console.log('createAllEntities', e)
