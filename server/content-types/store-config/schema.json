@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "store_configs",
+  "info": {
+    "singularName": "store-config",
+    "pluralName": "store-configs",
+    "displayName": "Store Config"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "hash": {
+      "type": "string"
+    },
+    "apiToken": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "clientSecret": {
+      "type": "string"
+    },
+    "channelId": {
+      "type": "string"
+    }
+  }
+}

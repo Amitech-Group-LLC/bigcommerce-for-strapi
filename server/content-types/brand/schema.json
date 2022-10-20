@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brands",
+  "info": {
+    "singularName": "brand",
+    "pluralName": "brands",
+    "displayName": "Brand"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "entityId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}

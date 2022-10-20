@@ -1,0 +1,12 @@
+{
+  "plugin.name": "BigCommerce",
+  "settings.title": "BigCommerce Store Settings",
+  "settings.hashLabel": "Store Hash",
+  "settings.apiTokenLabel": "API Token",
+  "settings.clientIdLabel": "Client ID",
+  "settings.clientSecretLabel": "Client Secret",
+  "settings.channelIdLabel": "Channel ID",
+  "settings.successConnection": "Success connection",
+  "settings.errorConnection": "Error connection",
+  "settings.saveButton": "Save"
+}

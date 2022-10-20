@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "entityId": {
+      "type": "integer"
+    },
+    "parentId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "sortOrder": {
+      "type": "integer"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "isVisible": {
+      "type": "boolean"
+    },
+    "defaultProductSort": {
+      "type": "enumeration",
+      "enum": [
+        "use_store_settings",
+        "featured",
+        "newest",
+        "best_selling",
+        "alpha_asc",
+        "alpha_desc",
+        "avg_customer_review",
+        "price_asc",
+        "price_desc"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}
