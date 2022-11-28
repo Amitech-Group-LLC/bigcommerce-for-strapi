@@ -1,12 +1,9 @@
+import { Seo } from './seo'
+
 export type StrapiBrand = {
   id: number
   name: string
-  seo: {
-    pageTitle: string
-    metaKeywords: string
-    metaDescription: string
-    searchKeywords: string
-  }
+  seo: Seo
   imageUrl: string
   path: string
 }

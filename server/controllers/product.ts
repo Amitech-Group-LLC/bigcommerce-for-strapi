@@ -6,4 +6,4 @@
 
 import { factories } from '@strapi/strapi'
 
-module.exports = factories.createCoreController('plugin::bigcommerce.brand');
+export default factories.createCoreController('plugin::bigcommerce.product');

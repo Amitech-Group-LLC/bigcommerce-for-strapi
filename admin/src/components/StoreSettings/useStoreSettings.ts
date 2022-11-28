@@ -23,6 +23,8 @@ const useStoreSettings = () => {
           { method: 'GET' }
         )
         setData(storeSettings)
+      } catch {
+        console.log('error config')
       } finally {
         setIsLoading(false)
       }
