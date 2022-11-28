@@ -183,35 +183,6 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     await handleList(result, async (product) => {
       // we should exclude relation because some products can be not created yet
       const { relatedProducts: _, ...data } = toStrapiProduct(product)
-      // if (data.id === 32046) {
-      //   try {
-      //     await strapi.entityService.create('plugin::bigcommerce.product', {
-      //       data: { ...data, customFields: [] },
-      //     })
-      //   } catch {}
-      //   const allFieldIds = [
-      //     952695, 952696, 952697, 952699, 952700, 952701, 952702, 952703,
-      //     952704, 1789410, 1789412, 1851531, 1971851,
-      //   ]
-      //   allFieldIds.forEach(async fieldId => {
-      //     try {
-      //       await strapi.entityService.update(
-      //         'plugin::bigcommerce.product',
-      //         data.id,
-      //         {
-      //           data: {
-      //             ...data,
-      //             customFields: data.customFields.filter(
-      //               item => item.id === fieldId
-      //             ),
-      //           },
-      //         }
-      //       )
-      //     } catch (e) {
-      //       console.log('error with field', fieldId)
-      //     }
-      //   })
-      // }
 
       try {
         await strapi.entityService.create('plugin::bigcommerce.product', {
