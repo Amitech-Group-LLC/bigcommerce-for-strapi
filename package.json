@@ -12,6 +12,7 @@
     "strapi",
     "commerce"
   ],
+  "repository": "https://github.com/Amitech-Group-LLC/bigcommerce-for-strapi",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
