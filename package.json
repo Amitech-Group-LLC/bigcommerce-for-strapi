@@ -1,12 +1,13 @@
 {
-  "name": "bigcommerce",
+  "name": "@amitechgrp/bigcommerce-for-strapi",
   "version": "0.0.0",
-  "description": "This is the description of the plugin.",
+  "description": "",
   "strapi": {
     "name": "bigcommerce",
-    "description": "Description of bigcommerce plugin",
+    "description": "Plugin for syncing data from BigCommerce store",
     "kind": "plugin"
   },
+  "keywords": ["bigcommerce", "strapi", "commerce"],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
@@ -18,7 +19,7 @@
     "typescript": "4.6.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Amitech Group"
   },
   "maintainers": [
     {
@@ -35,6 +36,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@amitechgrp/bigcommerce-api-sdk": "^1.0.0-beta.2"
+    "@amitechgrp/bigcommerce-api-sdk": "^1.0.0-beta.3"
   }
 }
