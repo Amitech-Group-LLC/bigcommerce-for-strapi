@@ -7,7 +7,6 @@
     "description": "Description of bigcommerce plugin",
     "kind": "plugin"
   },
-  "dependencies": {},
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
@@ -34,5 +33,8 @@
     "develop": "tsc -w",
     "build": "tsc"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@amitechgrp/bigcommerce-api-sdk": "^1.0.0-beta.2"
+  }
 }
