@@ -1,13 +1,17 @@
 {
   "name": "@amitechgrp/bigcommerce-for-strapi",
-  "version": "0.0.0",
+  "version": "1.0.0-beta.1",
   "description": "",
   "strapi": {
     "name": "bigcommerce",
     "description": "Plugin for syncing data from BigCommerce store",
     "kind": "plugin"
   },
-  "keywords": ["bigcommerce", "strapi", "commerce"],
+  "keywords": [
+    "bigcommerce",
+    "strapi",
+    "commerce"
+  ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
