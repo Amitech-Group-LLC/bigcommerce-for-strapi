@@ -1,4 +1,4 @@
-import { Brand, Category, Product } from 'api-sdk'
+import { Brand, Category, Product } from '@amitechgrp/bigcommerce-api-sdk'
 import { StrapiBrand } from '../types/brand'
 import { StrapiCategory } from '../types/category'
 import { StrapiProduct } from '../types/product'

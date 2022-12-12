@@ -1,12 +1,26 @@
-import { Strapi } from '@strapi/strapi';
+import { Strapi } from '@strapi/strapi'
 import { StoreSettings } from '../types/storeSettings'
-import { config, timeZones, brands, categories, products } from 'api-sdk'
-import { getAllItems, handleList } from '../utils/list-data'
-import { toStrapiBrand, toStrapiCategory, toStrapiProduct } from '../utils/data-mapping'
+import {
+  config,
+  timeZones,
+  brands,
+  categories,
+  products,
+  getAllItems,
+  handleList,
+} from '@amitechgrp/bigcommerce-api-sdk'
+import {
+  toStrapiBrand,
+  toStrapiCategory,
+  toStrapiProduct,
+} from '../utils/data-mapping'
 
 export default ({ strapi }: { strapi: Strapi }) => ({
   async setupClient() {
-    const storeConfig: StoreSettings = await strapi.plugin('bigcommerce').service('storeConfig').get()
+    const storeConfig: StoreSettings = await strapi
+      .plugin('bigcommerce')
+      .service('storeConfig')
+      .get()
     config.set({
       storeHash: storeConfig.hash,
       apiClientId: storeConfig.clientId,
@@ -22,9 +36,9 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     }
   },
   async createAllBrands() {
-    const result = await getAllItems((page) => brands.list({ limit: 250, page }))
+    const result = await getAllItems(page => brands.list({ limit: 250, page }))
 
-    await handleList(result, async (brand) => {
+    await handleList(result, async brand => {
       const data = toStrapiBrand(brand)
 
       try {
@@ -32,9 +46,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           data,
         })
       } catch {
-        await strapi.entityService.update('plugin::bigcommerce.brand', data.id, {
-          data,
-        })
+        await strapi.entityService.update(
+          'plugin::bigcommerce.brand',
+          data.id,
+          {
+            data,
+          }
+        )
       }
     })
 
@@ -82,9 +100,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         data,
       })
     } catch {
-      await strapi.entityService.update('plugin::bigcommerce.category', data.id, {
-        data,
-      })
+      await strapi.entityService.update(
+        'plugin::bigcommerce.category',
+        data.id,
+        {
+          data,
+        }
+      )
     }
   },
   async updateCategory(id: number) {
@@ -96,9 +118,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         data,
       })
     } catch {
-      await strapi.entityService.update('plugin::bigcommerce.category', data.id, {
-        data,
-      })
+      await strapi.entityService.update(
+        'plugin::bigcommerce.category',
+        data.id,
+        {
+          data,
+        }
+      )
     }
   },
   async deleteCategory(id: number) {
@@ -113,9 +139,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         data,
       })
     } catch {
-      await strapi.entityService.update('plugin::bigcommerce.product', data.id, {
-        data,
-      })
+      await strapi.entityService.update(
+        'plugin::bigcommerce.product',
+        data.id,
+        {
+          data,
+        }
+      )
     }
   },
   async updateProduct(id: number) {
@@ -127,9 +157,13 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         data,
       })
     } catch {
-      await strapi.entityService.update('plugin::bigcommerce.product', data.id, {
-        data,
-      })
+      await strapi.entityService.update(
+        'plugin::bigcommerce.product',
+        data.id,
+        {
+          data,
+        }
+      )
     }
   },
   async deleteProduct(id: number) {
@@ -137,10 +171,12 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   },
   async createAllCategories() {
     console.log('createAllCategories')
-    const result = await getAllItems((page) => categories.list({ limit: 250, page }))
+    const result = await getAllItems(page =>
+      categories.list({ limit: 250, page })
+    )
     console.log('all categories', result.length)
 
-    await handleList(result, async (category) => {
+    await handleList(result, async category => {
       // we should exclude relation because some categories can be not created yet
       const { parent: _, ...data } = toStrapiCategory(category)
 
@@ -149,21 +185,29 @@ export default ({ strapi }: { strapi: Strapi }) => ({
           data,
         })
       } catch {
-        await strapi.entityService.update('plugin::bigcommerce.category', data.id, {
-          data,
-        })
+        await strapi.entityService.update(
+          'plugin::bigcommerce.category',
+          data.id,
+          {
+            data,
+          }
+        )
       }
     })
 
     // add relations
-    await handleList(result, async (category) => {
+    await handleList(result, async category => {
       const { parent, id } = toStrapiCategory(category)
 
       if (parent) {
         try {
-          await strapi.entityService.update('plugin::bigcommerce.category', id, {
-            data: { parent },
-          })
+          await strapi.entityService.update(
+            'plugin::bigcommerce.category',
+            id,
+            {
+              data: { parent },
+            }
+          )
         } catch {
           console.log('category add relations error', id, parent)
         }
@@ -176,44 +220,65 @@ export default ({ strapi }: { strapi: Strapi }) => ({
   },
 
   async createAllProducts() {
-    const result = await getAllItems((page) => products.list({ limit: 250, page, include: 'images,primary_image,videos,custom_fields' }))
-    console.log('result', result.length)
+    const result = await getAllItems(page =>
+      products.list({
+        limit: 250,
+        page,
+        include: ['images', 'primary_image', 'videos', 'custom_fields'],
+      })
+    )
 
+    await handleList(
+      result,
+      async product => {
+        // we should exclude relation because some products can be not created yet
+        const { relatedProducts: _, ...data } = toStrapiProduct(product)
 
-    await handleList(result, async (product) => {
-      // we should exclude relation because some products can be not created yet
-      const { relatedProducts: _, ...data } = toStrapiProduct(product)
-
-      try {
-        await strapi.entityService.create('plugin::bigcommerce.product', {
-          data,
-        })
-      } catch (e) {
         try {
-          await strapi.entityService.update('plugin::bigcommerce.product', data.id, {
+          await strapi.entityService.create('plugin::bigcommerce.product', {
             data,
           })
         } catch (e) {
-          console.log('Error adding product', data.id, e)
+          try {
+            await strapi.entityService.update(
+              'plugin::bigcommerce.product',
+              data.id,
+              {
+                data,
+              }
+            )
+          } catch (e) {
+            console.log('Error adding product', data.id, e)
+          }
         }
+      },
+      500,
+      (from, to) => {
+        console.log('handled products', from, to)
       }
-    }, 500, (from, to) => {
-      console.log('handled products', from, to)
-    })
+    )
 
     // add relations
-    await handleList(result, async (product) => {
-      const { relatedProducts, ...data } = toStrapiProduct(product)
+    await handleList(
+      result,
+      async product => {
+        const { relatedProducts, ...data } = toStrapiProduct(product)
 
-      if (relatedProducts.length) {
-        await strapi.entityService.update('plugin::bigcommerce.product', data.id, {
-          data: { relatedProducts },
-        })
-      }
-    }, 500)
+        if (relatedProducts.length) {
+          await strapi.entityService.update(
+            'plugin::bigcommerce.product',
+            data.id,
+            {
+              data: { relatedProducts },
+            }
+          )
+        }
+      },
+      500
+    )
 
     return {
       total: result.length,
     }
   },
-});
+})
