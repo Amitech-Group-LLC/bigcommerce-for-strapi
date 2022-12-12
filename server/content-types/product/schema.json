@@ -183,6 +183,11 @@
     },
     "calculatedPrice": {
       "type": "decimal"
+    },
+    "customFields": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.custom-field"
     }
   }
 }

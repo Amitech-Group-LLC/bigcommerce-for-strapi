@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_product_video_product_videos",
+  "info": {
+    "displayName": "Product Video",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "youtube"
+      ]
+    },
+    "sortOrder": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "videoId": {
+      "type": "string"
+    }
+  }
+}

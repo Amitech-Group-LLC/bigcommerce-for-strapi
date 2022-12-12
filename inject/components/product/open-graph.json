@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_seo_open_graphs",
+  "info": {
+    "displayName": "Open Graph",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "product",
+        "album",
+        "book",
+        "drink",
+        "food",
+        "game",
+        "movie",
+        "song",
+        "tv_show"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "useMetaDescription": {
+      "type": "boolean"
+    },
+    "useProductName": {
+      "type": "boolean"
+    },
+    "useImage": {
+      "type": "boolean"
+    }
+  }
+}

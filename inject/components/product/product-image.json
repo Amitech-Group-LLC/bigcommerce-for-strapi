@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_product_image_product_images",
+  "info": {
+    "displayName": "Product Image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "isThumbnail": {
+      "type": "boolean"
+    },
+    "sortOrder": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "urlZoom": {
+      "type": "string"
+    },
+    "urlStandard": {
+      "type": "string"
+    },
+    "urlThumbnail": {
+      "type": "string"
+    },
+    "urlTiny": {
+      "type": "string"
+    }
+  }
+}
