@@ -1,0 +1,188 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "digital",
+        "physical"
+      ]
+    },
+    "sku": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "costPrice": {
+      "type": "decimal"
+    },
+    "retailPrice": {
+      "type": "decimal"
+    },
+    "salePrice": {
+      "type": "decimal"
+    },
+    "mapPrice": {
+      "type": "decimal"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::bigcommerce.category"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::bigcommerce.brand"
+    },
+    "inventoryLevel": {
+      "type": "integer"
+    },
+    "inventoryWarningLevel": {
+      "type": "integer"
+    },
+    "inventoryTracking": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "product",
+        "variant"
+      ]
+    },
+    "fixedCostShippingPrice": {
+      "type": "decimal"
+    },
+    "isFreeShipping": {
+      "type": "boolean"
+    },
+    "isVisible": {
+      "type": "boolean"
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "relatedProducts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::bigcommerce.product"
+    },
+    "warranty": {
+      "type": "string"
+    },
+    "binPickingNumber": {
+      "type": "string"
+    },
+    "upc": {
+      "type": "string"
+    },
+    "availabilityDescription": {
+      "type": "text"
+    },
+    "availability": {
+      "type": "enumeration",
+      "enum": [
+        "available",
+        "disabled",
+        "preorder"
+      ]
+    },
+    "giftWrappingOptionsType": {
+      "type": "enumeration",
+      "enum": [
+        "any",
+        "none",
+        "list"
+      ]
+    },
+    "sortOrder": {
+      "type": "integer"
+    },
+    "condition": {
+      "type": "enumeration",
+      "enum": [
+        "New",
+        "Used",
+        "Refurbished"
+      ]
+    },
+    "isConditionShown": {
+      "type": "boolean"
+    },
+    "orderQuantityMinimum": {
+      "type": "integer"
+    },
+    "orderQuantityMaximum": {
+      "type": "integer"
+    },
+    "preorderReleaseDate": {
+      "type": "datetime"
+    },
+    "preorderMessage": {
+      "type": "text"
+    },
+    "isPreorderOnly": {
+      "type": "boolean"
+    },
+    "isPriceHidden": {
+      "type": "boolean"
+    },
+    "priceHiddenLabel": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "openGraph": {
+      "displayName": "Open Graph",
+      "type": "component",
+      "repeatable": false,
+      "component": "product.open-graph"
+    },
+    "gtin": {
+      "type": "string"
+    },
+    "mpn": {
+      "type": "string"
+    },
+    "images": {
+      "displayName": "Product Image",
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product-image"
+    },
+    "videos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product-video"
+    },
+    "baseVariantId": {
+      "type": "integer"
+    },
+    "calculatedPrice": {
+      "type": "decimal"
+    }
+  }
+}

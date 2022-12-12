@@ -1,13 +1,10 @@
+import { Seo } from './seo'
+
 export type StrapiCategory = {
   id: number
   name: string
   description: string
-  seo: {
-    pageTitle: string
-    metaKeywords: string
-    metaDescription: string
-    searchKeywords: string
-  }
+  seo: Seo
   imageUrl: string
   path: string
   parent: number
