@@ -26,6 +26,9 @@
   "author": {
     "name": "Amitech Group"
   },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.0.0"
+  },
   "maintainers": [
     {
       "name": "A Strapi developer"

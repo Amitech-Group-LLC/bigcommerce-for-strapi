@@ -8,29 +8,28 @@ export default ({ strapi }: { strapi: Strapi }) => ({
       .checkConnection();
   },
   async createAllEntities(ctx) {
-    console.log('createAllEntities')
     try {
-      // const [brands, categories] = await Promise.all([
-      //   await strapi
-      //     .plugin('bigcommerce')
-      //     .service('commerce')
-      //     .createAllBrands(),
-      //   await strapi
-      //     .plugin('bigcommerce')
-      //     .service('commerce')
-      //     .createAllCategories()
-      // ])
+      const [brands, categories] = await Promise.all([
+        await strapi
+          .plugin('bigcommerce')
+          .service('commerce')
+          .createAllBrands(),
+        await strapi
+          .plugin('bigcommerce')
+          .service('commerce')
+          .createAllCategories()
+      ])
       const products = await strapi
         .plugin('bigcommerce')
         .service('commerce')
         .createAllProducts()
       ctx.body = {
-        // brandsTotal: brands.total,
-        // categoriesTotal: categories.total,
+        brandsTotal: brands.total,
+        categoriesTotal: categories.total,
         productsTotal: products.total,
       }
     } catch (e) {
-      console.log('createAllEntities', e)
+      console.log('createAllEntities error', e)
     }
   },
   async productCreated(ctx) {
