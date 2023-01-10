@@ -30,7 +30,7 @@ export const toStrapiCategory = (category: Category): StrapiCategory => {
       searchKeywords: category.search_keywords,
     },
     imageUrl: category.image_url,
-    path: category.custom_url.url,
+    path: category.custom_url?.url || `/${category.name}`,
     defaultProductSort:
       category.default_product_sort as StrapiCategory['defaultProductSort'],
     isVisible: category.is_visible,
