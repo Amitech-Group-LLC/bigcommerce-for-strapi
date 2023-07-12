@@ -265,13 +265,17 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         const { relatedProducts, ...data } = toStrapiProduct(product)
 
         if (relatedProducts.length) {
-          await strapi.entityService.update(
-            'plugin::bigcommerce.product',
-            data.id,
-            {
-              data: { relatedProducts },
-            }
-          )
+          try {
+            await strapi.entityService.update(
+              'plugin::bigcommerce.product',
+              data.id,
+              {
+                data: { relatedProducts },
+              }
+            )
+          } catch (e) {
+             console.log('Error updating product', data.id, e)
+          }
         }
       },
       500
